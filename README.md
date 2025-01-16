@@ -1,14 +1,16 @@
 ---
+layout: layouts/base.njk
 permalink: /
 ---
 
-# task
-
-Run any project.
+<hgroup>
+  <h1>task</h1>
+  <p>Run any project.</p>
+</hgroup>
 
 The task file is a simple bash script to install, configure and run a software project.
 
-## Spec
+## Specification
 
 The specification is a short tutorial to setup a task file for a python project.
 
