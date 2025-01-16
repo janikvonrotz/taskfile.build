@@ -1,0 +1,70 @@
+#!/bin/bash
+set -e
+
+function help() {
+    echo
+    echo "task <command> [options]"
+    echo
+    echo "commands:"
+    echo
+
+    # Define column widths
+    cmd_width=10
+    opt_width=6
+    desc_width=40
+
+    # Print table header
+    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "Command" "Option" "Description"
+    echo "|$(printf '%*s' $((cmd_width + 2)) '' | tr ' ' '-')|$(printf '%*s' $((opt_width + 2)) '' | tr ' ' '-')|$(printf '%*s' $((desc_width + 2)) '' | tr ' ' '-')|"
+
+    # Print table rows
+    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "all" "" "Run all tasks."
+    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "install" "" "Install node packages."
+    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "dev" "" "Run 11ty server."
+    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "build" "" "Build the 11ty website."
+    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "version" "" "Show version of required tools."
+
+    echo
+}
+
+
+function install() {
+    npm install
+}
+
+function dev() {
+    npx eleventy --serve
+}
+
+function build() {
+    npx eleventy
+}
+
+function version() {
+    echo "eleventy: $(npx eleventy --version)"
+}
+
+case "$1" in
+    help)
+        help
+        ;;
+    all)
+        install
+        build
+        ;;
+    install)
+        install
+        ;;
+    dev)
+        dev
+        ;;
+    build)
+        build
+        ;;
+    version)
+        version
+        ;;
+    *)
+        help
+        exit 1;
+esac

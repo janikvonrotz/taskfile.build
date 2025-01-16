@@ -1,14 +1,28 @@
+---
+permalink: /
+---
+
 # task
 
 Run any project.
 
-The task file is a simple bash script to run install, configure and run a software project.
+The task file is a simple bash script to install, configure and run a software project.
 
 ## Spec
 
 The specification is a short tutorial to setup a task file for a python project.
 
-Create a file `task` in your project.
+* Create a file `task` in your project.
+
+```bash
+touch task
+```
+
+* Make sure it is executable.
+
+```bash
+chmod +x task
+```
 
 * Add the shebang for bash.
 
@@ -50,10 +64,10 @@ function help() {
 
     # Print table rows
     printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "all" "" "Run all tasks."
-    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "version" "" "Show version of required tools."
     printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "install" "" "Setup the local environment."
     printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "lint" "" "Run pre-commit and update index.html."
     printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "source" "" "Source the Python virtual env."
+    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "version" "" "Show version of required tools."
 
     echo
 }
@@ -83,27 +97,26 @@ function lint() {
 
 * Finally, add the switch cases.
 
-```
+```bash
 case "$1" in
     help)
         help
         ;;
     all)
-        version
-        init
+        install
         lint
         ;;
-    version)
-        version
-        ;;
-    init)
-        init
+    install)
+        install
         ;;
     lint)
         lint
         ;;
     source)
         source env/bin/activate
+        ;;
+    version)
+        version
         ;;
     *)
         help
@@ -173,7 +186,7 @@ esac
 
 ## Examples
 
+* [janikvonrotz/taskfile.build](https://github.com/janikvonrotz/taskfile.build/blob/main/task)
+* [janikvonrotz/dotfiles](https://github.com/janikvonrotz/dotfiles/blob/master/task)
 * [Mint-System/Odoo-Build](https://github.com/Mint-System/Odoo-Build/blob/16.0/task)
 * [Mint-System/Ansible-Build](https://github.com/Mint-System/Ansible-Build/blob/main/task)
-* [janikvonrotz/dotfiles](https://github.com/janikvonrotz/dotfiles/blob/master/task)
-
