@@ -17,18 +17,23 @@
     </title>
   </head>
   <body>
+    <header>
+    </header>
     <main class="container">
-<nav>
-  <ul>
-    <li><strong><a href="/">taskfile.build</a></strong></li>
-  </ul>
-  <ul>
-    <li><a href="#specification">Specification</a></li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#examples">Examples</a></li>
-  </ul>
-</nav>
+      <nav>
+        <ul>
+          <li><strong><a href="/">taskfile.build</a></strong></li>
+        </ul>
+        <ul>
+          <li><a href="#specification">Specification</a></li>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#examples">Examples</a></li>
+        </ul>
+      </nav>
       {{ content | safe }}
+      <footer>
+        <a href="https://github.com/janikvonrotz/taskfile.build/edit/main/{{ page.inputPath }}">Edit this page on GitHub</a>
+      </footer>
     </main>
   </body>
 </html>

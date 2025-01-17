@@ -263,7 +263,7 @@ esac
 
 Source: [janikvonrotz/taskfile.build](https://github.com/janikvonrotz/taskfile.build/blob/main/task)
 
-More examples of task files can be access from these projects:
+More examples of task files can be accessed from these projects:
 
 * [janikvonrotz/dotfiles](https://github.com/janikvonrotz/dotfiles/blob/main/task)
 * [janikvonrotz/python.casa](https://github.com/janikvonrotz/python.casa/blob/main/task)
