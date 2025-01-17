@@ -5,5 +5,5 @@ module.exports = async function (eleventyConfig) {
 	eleventyConfig.addPlugin(IdAttributePlugin);
 	eleventyConfig.addPlugin(syntaxHighlight);
 
-	eleventyConfig.addPassthroughCopy({ "favicon.svg": "/" });
+	eleventyConfig.addPassthroughCopy("img");
 }
