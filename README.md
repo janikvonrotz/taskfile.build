@@ -102,30 +102,24 @@ function lint() {
 * Finally finish the file with command switch cases.
 
 ```bash
-case "$1" in
-    help)
-        help
-        ;;
-    all)
-        install
-        lint
-        ;;
-    install)
-        install
-        ;;
-    lint)
-        lint
-        ;;
-    source)
-        source env/bin/activate
-        ;;
-    version)
-        version
-        ;;
-    *)
-        help
-        exit 1;
-esac
+if declare -f "$1" > /dev/null; then
+    "$1" "${@:2}"
+else
+    case "$1" in
+        all)
+            install
+            lint
+            ;;
+        source)
+            source env/bin/activate
+            ;;
+        *)
+            echo "Unknown command: $1"
+            help
+            exit 1
+            ;;
+    esac
+fi
 ```
 
 ## Usage
@@ -235,30 +229,21 @@ function version() {
     echo "eleventy: $(npx eleventy --version)"
 }
 
-case "$1" in
-    help)
-        help
-        ;;
-    all)
-        install
-        build
-        ;;
-    install)
-        install
-        ;;
-    dev)
-        dev
-        ;;
-    build)
-        build
-        ;;
-    version)
-        version
-        ;;
-    *)
-        help
-        exit 1;
-esac
+if declare -f "$1" > /dev/null; then
+    "$1" "${@:2}"
+else
+    case "$1" in
+        all)
+            install
+            build
+            ;;
+        *)
+            echo "Unknown command: $1"
+            help
+            exit 1
+            ;;
+    esac
+fi
 ```
 
 Source: [janikvonrotz/taskfile.build](https://github.com/janikvonrotz/taskfile.build/blob/main/task)
