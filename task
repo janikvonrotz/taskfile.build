@@ -22,6 +22,7 @@ function help() {
     printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "install" "" "Install node packages."
     printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "dev" "" "Run 11ty server."
     printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "build" "" "Build the 11ty website."
+    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "serve" "" "Serve the 11ty output folder."
     printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "version" "" "Show version of required tools."
 
     echo
@@ -38,6 +39,10 @@ function dev() {
 
 function build() {
     npx eleventy
+}
+
+function serve() {
+    npx serve ./_site
 }
 
 function version() {
