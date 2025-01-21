@@ -29,9 +29,13 @@
         <ul>
           <li><a href="#specification">Specification</a></li>
           <li><a href="#usage">Usage</a></li>
+          <li><a href="#patterns">Patterns</a></li>
           <li><a href="#examples">Examples</a></li>
         </ul>
       </nav>
+      <!-- <nav>
+        {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+      </nav> -->
       {{ content | safe }}
       <footer>
         <a href="https://github.com/janikvonrotz/taskfile.build/edit/main/{{ page.inputPath }}">Edit this page on GitHub</a>
