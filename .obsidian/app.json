@@ -1,0 +1,9 @@
+{
+  "userIgnoreFilters": [
+    "node_modules/",
+    "_site/"
+  ],
+  "useMarkdownLinks": true,
+  "showUnsupportedFiles": true,
+  "showInlineTitle": false
+}

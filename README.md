@@ -2,7 +2,6 @@
 layout: layouts/base.njk
 permalink: /
 ---
-
 <hgroup>
   <h1>task</h1>
   <p>Run any project.</p>
@@ -122,6 +121,164 @@ else
 fi
 ```
 
+### Patterns
+
+The task file showed above is very basic. Commands can have parameters and functions call each other. The following is a collection of such complex task file patterns.
+#### Set default parameter
+
+Fallback to a default value for a parameter.
+
+```bash
+function build() {
+    PLATFORM="amd64"
+    if [ -n "$1" ]; then
+        PLATFORM="$1"
+    fi
+```
+
+#### Ensure parameter is not empty
+
+Check the first param and exit if it is empty.
+
+```bash
+function deploy() {
+    if test -z "$1"; then echo "\$1 is empty."; exit; fi
+```
+
+#### Setup local env vars
+
+Define env vars at the beginning of the task file.
+
+```bash
+CONFIGURATION_FILE="file.conf"
+GIT_BRANCH=$(git symbolic-ref --short -q HEAD)
+```
+
+#### Template with env vars
+
+Create a parameterized file from a template. Requires `envsubst`.
+
+```bash
+function template-with-env() {
+    echo "Template $CONFIGURATION_FILE"
+
+    export CONFIGURATION_1
+    export CONFIGURATION_2=${CONFIGURATION_2:="value"}
+
+    envsubst < "file.conf.template" > "$CONFIGURATION_FILE"
+}
+```
+
+#### Create Python virtual env
+
+Initialize Python virtual env with uv.
+
+```bash
+function init-venv() {
+    if [ ! -d "venv$GIT_BRANCH" ]; then
+        echo "Init venv$GIT_BRANCH with $(uv --version)."
+        uv venv "venv$GIT_BRANCH"
+    fi
+}
+```
+
+#### Activate Python virtual env
+
+```bash
+function activate-venv() {
+    echo "Source virtualenv venv$GIT_BRANCH."
+    source "venv$GIT_BRANCH/bin/activate"
+    echo "$(python --version) is active."
+}
+```
+
+#### Call a Python script
+
+Run a Python script.
+
+```bash
+function generate-password-hash() {
+    activate-venv
+    if test -z "$1"; then echo "\$1 is empty."; exit; fi
+    PASSWORD_PLAIN="$1"
+    scripts/password_hash
+}
+```
+
+```python
+#!/usr/bin/env python3
+
+import os
+from passlib.context import CryptContext
+crypt_context = CryptContext(schemes=['pbkdf2_sha512', 'plaintext'], deprecated=['plaintext'])
+
+password = os.environ.get('PASSWORD_PLAIN')
+print(crypt_context.hash(password))
+```
+
+#### Command with named parameters
+
+Assuming you have a `docker-compose.yml` and would like to start selected or all containers.
+
+```bash
+function start() {    
+    
+    if [[ "$1" =~ "db" ]]; then
+        docker compose up -d db
+    fi
+
+    if [[ "$1" =~ "admin" ]]; then
+        docker compose up -d admin
+        echo "Open http://localhost:8000 url in your browser."
+    fi
+
+    if [[ "$1" =~ "odoo" ]]; then
+        docker compose up -d odoo
+        echo "Open http://localhost:8069 url in your browser."
+    fi
+
+    if [[ "$1" =~ "mail" ]]; then
+	    docker compose up -d mail
+        echo "Open http://localhost:8025 url in your browser."
+    fi
+}
+```
+
+Start all containers with `task start` and selected with `task start db,admin`.
+
+#### Run commands in container
+
+Use `docker exec -i` to run commands in a container.
+
+```bash
+function drop-db() {
+    DATABASE="$1"
+    if [ -z "$DATABASE" ]; then
+        DATABASE="example"
+    fi
+
+    docker exec -i db psql "postgres://odoo:odoo@localhost:5432/postgres" -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '$DATABASE';"
+    docker exec -i db psql "postgres://odoo:odoo@localhost:5432/postgres" -c "DROP DATABASE \"$DATABASE\";"
+}
+```
+
+#### Loop over files and folders
+
+Use `for` to loop over file, folders or arrays.
+
+```bash
+function render() {
+    echo "Update index.html for all folders"
+    for FOLDER in ./*; do
+        if [ -f "$FOLDER/README.md" ]; then
+            cd "$FOLDER" || exit
+            md2html README.md _site/index.html
+            cd .. || exit
+        fi
+    done
+}
+```
+
 ## Usage
 
 Running the task file requires a shell alias: `alias task='./task'`
@@ -178,6 +335,70 @@ case "$state" in
 esac
 ```
 
+### GitHub Actions
+
+Running task file commands in GitHub Actions is highly recommended. This way you can run the same CI/CD procedures in the GitHub runner as you do on your localhost.
+
+The GitHub Actions config is simple: `.github/workflows/test.yml `
+
+```yml
+on:
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "main"
+
+jobs:
+  task-all:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Run task install
+        run: ./task install
+      - name: Run task lint
+        run: ./task lint
+```
+
+### Jenkins
+
+Run task file commands in Jenkins: `Jenkinsfile`
+
+```groovy
+pipeline {
+
+    agent any
+    
+    stages {
+        stage('version') {
+            steps {
+                script {
+                    currentBuild.description = sh (script: 'git log -1 --pretty=%B', returnStdout: true).trim()
+                }
+                sh './task version'
+            }
+        }
+        stage('install') {
+            steps {
+                sh './task install'
+            }
+        }
+        stage('lint') {
+            steps {
+                sh '''#!/bin/bash
+				./task lint
+				'''
+            }
+        }
+    }
+}%         
+```
 ## Examples
 
 This website is built with a task file. Here is the source:
