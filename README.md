@@ -124,7 +124,8 @@ fi
 
 ### Patterns
 
-The task file showed above is very basic. Commands can have parameters and functions call each other. The following is a collection of such complex task file patterns.
+The task file showed above is very basic. Commands can have parameters and functions call each other. The following is a collection of more complex task file patterns.
+
 #### Set default parameter
 
 Fallback to a default value for a parameter.
