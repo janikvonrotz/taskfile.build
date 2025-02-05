@@ -483,7 +483,7 @@ fi
 
 Source: [janikvonrotz/taskfile.build](https://github.com/janikvonrotz/taskfile.build/blob/main/task)
 
-More examples of task files can be accessed from these projects:
+Implementations of the task file standard can be accessed from these projects:
 
 * [janikvonrotz/dotfiles](https://github.com/janikvonrotz/dotfiles/blob/main/task)
 * [janikvonrotz/python.casa](https://github.com/janikvonrotz/python.casa/blob/main/task)
