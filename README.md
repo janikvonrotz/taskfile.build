@@ -405,15 +405,13 @@ pipeline {
         }
         stage('lint') {
             steps {
-                sh '''#!/bin/bash
-				./task lint
-				'''
+                sh './task lint'
             }
         }
     }
 }%         
 ```
-## Examples
+## Example
 
 This website is built with a task file. Here is the source:
 
@@ -482,6 +480,8 @@ fi
 ```
 
 Source: [janikvonrotz/taskfile.build](https://github.com/janikvonrotz/taskfile.build/blob/main/task)
+
+### More examples
 
 Implementations of the task file standard can be accessed from these projects:
 
