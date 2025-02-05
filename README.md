@@ -147,6 +147,18 @@ function deploy() {
     if test -z "$1"; then echo "\$1 is empty."; exit; fi
 ```
 
+#### Prompt for input
+
+Use `read` to ask for inputs.
+
+```bash
+if [ -z "$2" ]; then
+	read -p "Enter the task description: " TASK_DESCRIPTION
+else
+	TASK_DESCRIPTION="$2"
+fi
+```
+
 #### Setup local env vars
 
 Define env vars at the beginning of the task file.
