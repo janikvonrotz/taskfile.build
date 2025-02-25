@@ -9,21 +9,23 @@ function help() {
     echo
 
     # Define column widths
-    cmd_width=10
-    opt_width=6
-    desc_width=40
+    CMD_WIDTH=10
+    OPT_WIDTH=6
+    DESC_WIDTH=40
+    COLUMN="| %-${CMD_WIDTH}s | %-${OPT_WIDTH}s | %-${DESC_WIDTH}s |\n"
 
     # Print table header
-    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "Command" "Option" "Description"
-    echo "|$(printf '%*s' $((cmd_width + 2)) '' | tr ' ' '-')|$(printf '%*s' $((opt_width + 2)) '' | tr ' ' '-')|$(printf '%*s' $((desc_width + 2)) '' | tr ' ' '-')|"
+    printf "$COLUMN" "Command" "Option" "Description"
+    echo "|$(printf '%*s' $((CMD_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((OPT_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((DESC_WIDTH + 2)) '' | tr ' ' '-')|"
 
     # Print table rows
-    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "all" "" "Run all tasks."
-    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "install" "" "Install node packages."
-    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "dev" "" "Run 11ty server."
-    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "build" "" "Build the 11ty website."
-    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "serve" "" "Serve the 11ty output folder."
-    printf "| %-${cmd_width}s | %-${opt_width}s | %-${desc_width}s |\n" "version" "" "Show version of required tools."
+
+    printf "$COLUMN" "all" "" "Run all tasks."
+    printf "$COLUMN" "install" "" "Install node packages."
+    printf "$COLUMN" "dev" "" "Run 11ty server."
+    printf "$COLUMN" "build" "" "Build the 11ty website."
+    printf "$COLUMN" "serve" "" "Serve the 11ty output folder."
+    printf "$COLUMN" "version" "" "Show version of required tools."
 
     echo
 }
