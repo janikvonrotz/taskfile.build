@@ -122,11 +122,20 @@ else
 fi
 ```
 
-### Patterns
+### Naming
+
+The naming of functions is important. There are basically two styles:
+
+1. Execution + Object
+2. Object + Execution
+
+The task file function use the first style. The name of function starts with the action followed by the object.
+
+## Patterns
 
 The task file showed above is very basic. Commands can have parameters and functions call each other. The following is a collection of more complex task file patterns.
 
-#### Set default parameter
+### Set default parameter
 
 Fallback to a default value for a parameter.
 
@@ -138,7 +147,7 @@ function build() {
     fi
 ```
 
-#### Ensure parameter is not empty
+### Ensure parameter is not empty
 
 Check the first param and exit if it is empty.
 
@@ -147,7 +156,7 @@ function deploy() {
     if test -z "$1"; then echo "\$1 is empty."; exit; fi
 ```
 
-#### Prompt for input
+### Prompt for input
 
 Use `read` to ask for inputs.
 
@@ -159,7 +168,7 @@ else
 fi
 ```
 
-#### Setup local env vars
+### Setup local env vars
 
 Define env vars at the beginning of the task file.
 
@@ -168,7 +177,7 @@ CONFIGURATION_FILE="file.conf"
 GIT_BRANCH=$(git symbolic-ref --short -q HEAD)
 ```
 
-#### Template with env vars
+### Template with env vars
 
 Create a parameterized file from a template. Requires `envsubst`.
 
@@ -183,7 +192,7 @@ function template-with-env() {
 }
 ```
 
-#### Create Python virtual env
+### Create Python virtual env
 
 Initialize Python virtual env with uv.
 
@@ -196,7 +205,7 @@ function init-venv() {
 }
 ```
 
-#### Activate Python virtual env
+### Activate Python virtual env
 
 ```bash
 function activate-venv() {
@@ -206,7 +215,7 @@ function activate-venv() {
 }
 ```
 
-#### Call a Python script
+### Call a Python script
 
 Run a Python script.
 
@@ -230,7 +239,7 @@ password = os.environ.get('PASSWORD_PLAIN')
 print(crypt_context.hash(password))
 ```
 
-#### Command with named parameters
+### Command with named parameters
 
 Assuming you have a `docker-compose.yml` and would like to start selected or all containers.
 
@@ -260,7 +269,7 @@ function start() {
 
 Start all containers with `task start` and selected with `task start db,admin`.
 
-#### Run commands in container
+### Run commands in container
 
 Use `docker exec -i` to run commands in a container.
 
@@ -276,7 +285,7 @@ function drop-db() {
 }
 ```
 
-#### Loop over files and folders
+### Loop over files and folders
 
 Use `for` to loop over file, folders or arrays.
 
