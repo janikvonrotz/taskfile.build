@@ -128,8 +128,8 @@ fi
 
 The naming of functions is important. There are basically two styles:
 
-1. Execution + Object
-2. Object + Execution
+1. Action + Object
+2. Object + Action
 
 The task file function use the first style. The name of function starts with the action followed by the object.
 
