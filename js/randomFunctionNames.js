@@ -1,4 +1,3 @@
-
 // Function to extract array from span content
 const getItemsFromSpan = (spanId) => {
     const span = document.getElementById(spanId);
@@ -11,14 +10,13 @@ const getItemsFromSpan = (spanId) => {
 // Load actions and objects from spans
 let actions = [];
 let objects = [];
+let objectTools = [];
 
 // Load after DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     actions = getItemsFromSpan('actions');
-    objects = [
-        ...getItemsFromSpan('objects'),
-        ...getItemsFromSpan('object-tools')
-    ];
+    objects = getItemsFromSpan('objects');
+    objectTools = getItemsFromSpan('object-tools');
 });
 
 // Function to get a random item from an array
@@ -27,16 +25,17 @@ const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 // Function to generate random function names
 const generateFunctionName = () => {
     const action = getRandomItem(actions);
-    const object = getRandomItem(objects);
+    const firstObject = getRandomItem([...objects, ...objectTools]);
 
     // Randomly decide if a compound object name should be created
     const compound = Math.random() > 0.7;
     if (compound) {
+        // Only use regular objects as the second object
         const secondObject = getRandomItem(objects);
-        return `${action}-${object}-${secondObject}`;
+        return `${action}-${firstObject}-${secondObject}`;
     }
 
-    return `${action}-${object}`;
+    return `${action}-${firstObject}`;
 };
 
 // Generate a list of random function names
