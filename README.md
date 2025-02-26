@@ -135,9 +135,9 @@ The task file function use the first style. The name of function starts with the
 
 **Examples for action**: <span id="actions">activate, install, dev, develop, init, build, start, update, remove, delete, enable, disable, template, convert, create, edit, change, get, set, patch, fetch, generate, push, pull, import, export, list, publish, release, test, setup, prepare, restart, stop, store, restore, translate, upgrade, zip, visualize, sync, switch, run, reset, load, dump, checkout, commit, drop, deploy, handle, trigger, render, lint, uninstall, split, parse</span>
 
-**Examples for object**: <span id="objects">env, venv,  submodule, container, database, snippet, model, module, repo, mail, doc, dependency, view, user, vault, file, host, node, log, password, hash, script, requirement</span>
+**Examples for object**: <span id="objects">env, venv,  submodule, container, database, snippet, model, module, repo, mail, doc, dependency, view, user, vault, file, host, node, log, password, hash, script, requirement, part, component, system</span>
 
-**Objects can be tools**: <span id="object-tools">odoo, vupress, node, zsh, bash, fish, podman, kind, minikube, helm, nvim, docker, podman, rust, python, tmux, vim, helix, system, git, pass, llm, sql, dotenv</span>
+**Objects can be tools**: <span id="object-tools">odoo, vupress, node, zsh, bash, fish, podman, kind, minikube, helm, nvim, docker, podman, rust, python, tmux, vim, helix, system, git, pass, llm, sql, dotenv, javascript, vue, vite, astro, typescript, turbo, pnpm, eslint, </span>
 
 <button id="generate-function-names">Generate Function Names</button> <ul id="function-names"> <!-- Random function names will be inserted here by JS --> </ul>
 ## Patterns
