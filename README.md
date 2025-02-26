@@ -131,8 +131,17 @@ The naming of functions is important. There are basically two styles:
 1. Action + Object
 2. Object + Action
 
-The task file function use the first style. The name of function starts with the action followed by the object.
+The task file function use the first style. The name of function starts with the action followed by the object. The object definition can be singular and/or plural.
 
+**Examples for action**: activate, install, dev, develop, init, build, start, update, remove, delete, enable, disable, template, convert, create, edit, change, get, set, patch, fetch, generate, push, pull, import, export, list, publish, release, test, setup, prepare, restart, stop, store, restore, translate, upgrade, zip, visualize, sync, switch, run, reset, load, dump, checkout, commit, drop, deploy, handle, trigger, render, lint, uninstall
+
+**Examples for object**: env, venv,  submodule, container, database, snippet, model, module, repo, mail, doc, dependency, view, user, vault, file, host, node, log, password, hash, script, requirement, addon, path, config, revision, version, snippet, help, table, project, desktop
+
+Objects can be tools: odoo, vupress, node, zsh, bash, fish, podman, kind, minikube, helm, nvim, docker, podman, rust, python, tmux, vim, helix, system, git, pass, llm, sql, dotenv
+
+Object definitions can be combined: password-hash, git-submodule, user-model, odoo-database, help-docs
+
+**Examples for function**: install-module, generate-passwod-hash, pull-git-submodule, activate-venv, list-odoo-requirements, update-addon-path, restore-pass, patch-database, render-project-docs
 ## Patterns
 
 The task file showed above is very basic. Commands can have parameters and functions call each other. The following is a collection of more complex task file patterns.
@@ -303,6 +312,10 @@ function render() {
     done
 }
 ```
+
+### Parse and split a file
+
+
 
 ## Usage
 
