@@ -133,9 +133,9 @@ The naming of functions is important. There are basically two styles:
 
 The task file function use the first style. The name of function starts with the action followed by the object. The object definition can be singular and/or plural.
 
-**Examples for action**: <span id="actions">activate, install, dev, develop, init, build, start, update, remove, delete, enable, disable, template, convert, create, edit, change, get, set, patch, fetch, generate, push, pull, import, export, list, publish, release, test, setup, prepare, restart, stop, store, restore, translate, upgrade, zip, visualize, sync, switch, run, reset, load, dump, checkout, commit, drop, deploy, handle, trigger, render, lint, uninstall, split, parse, fix, refactor, chore, style</span>
+**Examples for actions**: <span id="actions">activate, install, dev, develop, init, build, start, update, remove, delete, enable, disable, template, convert, create, edit, change, get, set, patch, fetch, generate, push, pull, import, export, list, publish, release, test, setup, prepare, restart, stop, store, restore, translate, upgrade, zip, visualize, sync, switch, run, reset, load, dump, checkout, commit, drop, deploy, handle, trigger, render, lint, uninstall, split, parse, fix, refactor, chore, style</span>
 
-**Examples for object**: <span id="objects">env, venv,  submodule, container, database, snippet, model, module, repo, mail, doc, dependency, view, user, vault, file, host, node, log, password, hash, script, requirement, part, component, system, workspace, image</span>
+**Examples for objects**: <span id="objects">env, venv,  submodule, container, database, snippet, model, module, repo, mail, doc, dependency, view, user, vault, file, host, node, log, password, hash, script, requirement, part, component, system, workspace, image</span>
 
 **Objects can be tools**: <span id="object-tools">odoo, vupress, node, zsh, bash, fish, podman, kind, minikube, helm, nvim, docker, podman, rust, python, tmux, vim, helix, system, git, pass, llm, sql, dotenv, javascript, vue, vite, astro, typescript, turbo, pnpm, eslint, jenkins</span>
 
