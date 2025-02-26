@@ -137,7 +137,7 @@ The task file function use the first style. The name of function starts with the
 
 **Examples for objects**: <span id="objects">env, venv,  submodule, container, database, snippet, model, module, repo, mail, doc, dependency, view, user, vault, file, host, node, log, password, hash, script, requirement, part, component, system, workspace, image, os, fs, ps, state</span>
 
-**Objects can be tools**: <span id="object-tools">odoo, vupress, node, zsh, bash, fish, podman, kind, minikube, helm, nvim, docker, podman, rust, python, tmux, vim, helix, system, git, pass, llm, sql, dotenv, javascript, vue, vite, astro, typescript, turbo, pnpm, eslint, jenkins, k8s</span>
+**Objects can be tools**: <span id="object-tools">odoo, vupress, node, zsh, bash, fish, podman, kind, minikube, helm, nvim, docker, podman, rust, python, tmux, vim, helix, system, git, pass, llm, sql, dotenv, javascript, vue, vite, astro, typescript, turbo, pnpm, eslint, jenkins, k8s, js, py</span>
 
 <button id="generate-function-names">Generate Function Names</button> <ul id="function-names"> <!-- Random function names will be inserted here by JS --> </ul>
 ## Patterns
