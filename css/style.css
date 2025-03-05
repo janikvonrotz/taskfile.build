@@ -1,0 +1,7 @@
+#scrollToTop {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: none;
+    z-index: 1000;
+}

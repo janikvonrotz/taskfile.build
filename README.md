@@ -4,9 +4,11 @@ permalink: /
 ---
 
 <hgroup>
-  <h1>task</h1>
+  <h1>./task</h1>
   <p>Run any project.</p>
 </hgroup>
+
+---
 
 The task file is a simple bash script and standardized interface for all software projects.
 
