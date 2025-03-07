@@ -164,7 +164,11 @@ Check the first param and exit if it is empty.
 
 ```bash
 function deploy() {
-    if test -z "$1"; then echo "\$1 is empty."; exit; fi
+    if test -z "$1"; then 
+        echo "\$1 is empty. Usage:";
+        help | grep "${FUNCNAME[0]}"
+        exit 1; 
+    fi
 ```
 
 ### Prompt for input
@@ -313,7 +317,7 @@ function render() {
 }
 ```
 
-### Parse and reassemble a file
+### Parse and convert a file
 
 With this function you can split a file into multiple parts whenever a specific keyword is matching. In this example the keyword is `!vault`.
 
