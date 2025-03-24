@@ -239,7 +239,7 @@ function generate-password-hash() {
     activate-venv
     if test -z "$1"; then echo "\$1 is empty."; exit; fi
     PASSWORD_PLAIN="$1"
-    scripts/password_hash
+    bin/password-hash
 }
 ```
 
