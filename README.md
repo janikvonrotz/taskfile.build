@@ -7,6 +7,7 @@ permalink: /
   <h1>./task</h1>
   <p>Run any project.</p>
 </hgroup>
+![Vercel](https://vercelbadge.vercel.app/api/janikvonrotz/taskfile.build)
 
 ---
 
