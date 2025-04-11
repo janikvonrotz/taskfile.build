@@ -1,27 +1,31 @@
 {
-  "name": "taskfile.build",
-  "version": "1.0.0",
-  "description": "Run any project.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/janikvonrotz/taskfile.build.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/janikvonrotz/taskfile.build/issues"
-  },
-  "homepage": "https://github.com/janikvonrotz/taskfile.build#readme",
-  "dependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-navigation": "^0.3.5",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
-    "eleventy-plugin-toc": "^1.1.5",
-    "markdown-it-anchor": "^9.2.0"
-  }
+    "name": "taskfile.build",
+    "version": "1.0.0",
+    "description": "Run any project.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/janikvonrotz/taskfile.build.git"
+    },
+    "keywords": [],
+    "author": "Janik von Rotz",
+    "license": "AGPL-3.0-only",
+    "bugs": {
+        "url": "https://github.com/janikvonrotz/taskfile.build/issues"
+    },
+    "homepage": "https://github.com/janikvonrotz/taskfile.build#readme",
+    "dependencies": {
+        "@11ty/eleventy": "^3.0.0",
+        "@11ty/eleventy-navigation": "^0.3.5",
+        "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+        "eleventy-plugin-toc": "^1.1.5",
+        "markdown-it-anchor": "^9.2.0"
+    },
+    "devDependencies": {
+        "prettier": "3.5.3",
+        "prettier-plugin-sh": "^0.17.2"
+    }
 }

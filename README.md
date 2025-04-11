@@ -7,6 +7,7 @@ permalink: /
   <h1>./task</h1>
   <p>Run any project.</p>
 </hgroup>
+
 ![Vercel](https://vercelbadge.vercel.app/api/janikvonrotz/taskfile.build)
 
 ---
@@ -19,30 +20,31 @@ It is to be understood as a software development pattern to standardize the inst
 
 The specification is a short guide to setting up a task file for a Python project.
 
-* Create a file `task` in your project.
+- Create a file `task` in your project.
 
 ```bash
 touch task
 ```
 
-* Ensure it is executable.
+- Ensure it is executable.
 
 ```bash
 chmod +x task
 ```
 
-* First add the bash shebang.
+- First add the bash shebang.
 
 ```bash
 #!/bin/bash
 ```
-* Then append the abort on error setting.
+
+- Then append the abort on error setting.
 
 ```bash
 set -e
 ```
 
-* Load environment variables from the `.env` file.
+- Load environment variables from the `.env` file.
 
 ```bash
 if [[ -a ".env" ]]; then
@@ -50,7 +52,7 @@ if [[ -a ".env" ]]; then
 fi
 ```
 
-* Add a help function.
+- Add a help function.
 
 ```bash
 function help() {
@@ -82,7 +84,7 @@ function help() {
 }
 ```
 
-* Setup the command functions.
+- Setup the command functions.
 
 ```bash
 function version() {
@@ -104,7 +106,7 @@ function lint() {
 }
 ```
 
-* Finally finish the file with command switch cases.
+- Finally finish the file with command switch cases.
 
 ```bash
 if declare -f "$1" > /dev/null; then
@@ -138,11 +140,12 @@ The task file function use the first style. The name of function starts with the
 
 **Examples for actions**: <span id="actions">activate, install, dev, develop, init, build, start, update, remove, delete, enable, disable, template, convert, create, edit, change, get, set, patch, fetch, generate, push, pull, import, export, list, publish, release, test, setup, prepare, restart, stop, store, restore, translate, upgrade, zip, visualize, sync, switch, run, reset, load, dump, checkout, commit, drop, deploy, handle, trigger, render, lint, uninstall, split, parse, fix, refactor, transform, cat, ls, rm, serve, help, show, filter, login, logout, encrypt, decrypt, upload, download, analyse, transpile, compile, minify, copy</span>
 
-**Examples for objects**: <span id="objects">env, venv,  submodule, container, database, snippet, model, module, repo, mail, doc, dependency, view, user, vault, file, host, node, log, password, hash, script, requirement, part, component, system, workspace, image, process, state, platform, dir, folder, readme, overview, lang, level, request, response, result, worker, server, proxy, workflow, volume, network, package, field, value, secret, chart, node, edge, function, method, firewall, html, css, image, svg, style, query, native, group, notebook</span>
+**Examples for objects**: <span id="objects">env, venv, submodule, container, database, snippet, model, module, repo, mail, doc, dependency, view, user, vault, file, host, node, log, password, hash, script, requirement, part, component, system, workspace, image, process, state, platform, dir, folder, readme, overview, lang, level, request, response, result, worker, server, proxy, workflow, volume, network, package, field, value, secret, chart, node, edge, function, method, firewall, html, css, image, svg, style, query, native, group, notebook</span>
 
 **Objects can be tools**: <span id="object-tools">odoo, vupress, nodejs, zsh, bash, fish, podman, kind, minikube, helm, nvim, docker, podman, rust, python, tmux, vim, helix, system, git, pass, llm, sql, dotenv, javascript, vue, vite, astro, typescript, turbo, pnpm, eslint, jenkins, k8s, nextcloud, postgres, metabase, ansible, prometheus, grafana, hugo, deno, bun, babel, panda, gulp, grunt, electron, react, express, mongodb, angular, ionic, meteor, webpack, bower, jupyter</span>
 
 <button id="generate-function-names">Generate Function Names</button> <ul id="function-names"> <!-- Random function names will be inserted here by JS --> </ul>
+
 ## Patterns
 
 The task file showed above is very basic. Commands can have parameters and functions call each other. The following is a collection of more complex task file patterns.
@@ -165,10 +168,10 @@ Check the first param and exit if it is empty.
 
 ```bash
 function deploy() {
-    if test -z "$1"; then 
+    if test -z "$1"; then
         echo "\$1 is empty. Usage:";
         help | grep "${FUNCNAME[0]}"
-        exit 1; 
+        exit 1;
     fi
 ```
 
@@ -260,8 +263,8 @@ print(crypt_context.hash(password))
 Assuming you have a `docker-compose.yml` and would like to start selected or all containers.
 
 ```bash
-function start() {    
-    
+function start() {
+
     if [[ "$1" =~ "db" ]]; then
         docker compose up -d db
     fi
@@ -328,7 +331,7 @@ function convert-vault-file() {
     TEMP_FILE=$(mktemp)
     TEMP_PART_FILE=$(mktemp)
 	WRITE_FINISHED=false
-	
+
 	while IFS= read -r LINE; do
 		# Check for keyword
 		if [[ "$LINE" =~ "!vault" ]]; then
@@ -364,7 +367,7 @@ function convert-vault-file() {
 
 Running the task file requires a shell alias: `alias task='./task'`
 
-Show the available commands with `task help`. 
+Show the available commands with `task help`.
 
 From the specification the project can be installed with `task install`.
 
@@ -424,27 +427,27 @@ The GitHub Actions config is simple: `.github/workflows/test.yml `
 
 ```yml
 on:
-  pull_request:
-    branches:
-      - "main"
-  push:
-    branches:
-      - "main"
+    pull_request:
+        branches:
+            - 'main'
+    push:
+        branches:
+            - 'main'
 
 jobs:
-  task-all:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
-      - name: Run task install
-        run: ./task install
-      - name: Run task lint
-        run: ./task lint
+    task-all:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: '3.12'
+            - name: Install uv
+              uses: astral-sh/setup-uv@v5
+            - name: Run task install
+              run: ./task install
+            - name: Run task lint
+              run: ./task lint
 ```
 
 ### Jenkins
@@ -455,7 +458,7 @@ Run task file commands in Jenkins: `Jenkinsfile`
 pipeline {
 
     agent any
-    
+
     stages {
         stage('version') {
             steps {
@@ -476,8 +479,9 @@ pipeline {
             }
         }
     }
-}%         
+}%
 ```
+
 ## Example
 
 This website is built with a task file. Here is the source:
@@ -559,10 +563,10 @@ Source: [janikvonrotz/taskfile.build](https://github.com/janikvonrotz/taskfile.b
 
 Implementations of the task file standard can be accessed from these projects:
 
-* [janikvonrotz/dotfiles](https://github.com/janikvonrotz/dotfiles/blob/main/task)
-* [janikvonrotz/python.casa](https://github.com/janikvonrotz/python.casa/blob/main/task)
-* [Mint-System/Ansible-Build](https://github.com/Mint-System/Ansible-Build/blob/main/task)
-* [Mint-System/Odoo-Build](https://github.com/Mint-System/Odoo-Build/blob/16.0/task)
-* [Mint-System/Odoo-Wiki](https://github.com/Mint-Wiki/Odoo-Build/blob/main/task)
-* [Mint-System/Website](https://github.com/Mint-System/Website/blob/main/task)
-* [Mint-System/Wiki](https://github.com/Mint-System/Wiki/blob/main/task)
+- [janikvonrotz/dotfiles](https://github.com/janikvonrotz/dotfiles/blob/main/task)
+- [janikvonrotz/python.casa](https://github.com/janikvonrotz/python.casa/blob/main/task)
+- [Mint-System/Ansible-Build](https://github.com/Mint-System/Ansible-Build/blob/main/task)
+- [Mint-System/Odoo-Build](https://github.com/Mint-System/Odoo-Build/blob/16.0/task)
+- [Mint-System/Odoo-Wiki](https://github.com/Mint-Wiki/Odoo-Build/blob/main/task)
+- [Mint-System/Website](https://github.com/Mint-System/Website/blob/main/task)
+- [Mint-System/Wiki](https://github.com/Mint-System/Wiki/blob/main/task)

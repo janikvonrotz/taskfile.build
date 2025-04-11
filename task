@@ -23,6 +23,8 @@ function help() {
     printf "$COLUMN" "all" "" "Run all tasks."
     printf "$COLUMN" "install" "" "Install node packages."
     printf "$COLUMN" "dev" "" "Run 11ty server."
+    printf "$COLUMN" "lint" "" "Lint code with prettier."
+    printf "$COLUMN" "run-tests" "" "Test with shellcheck."
     printf "$COLUMN" "build" "" "Build the 11ty website."
     printf "$COLUMN" "serve" "" "Serve the 11ty output folder."
     printf "$COLUMN" "version" "" "Show version of required tools."
@@ -37,6 +39,15 @@ function install() {
 
 function dev() {
     npx eleventy --serve
+}
+
+function lint() {
+    pnpm exec prettier . --write
+}
+
+function run-tests() {
+    echo "Test with shellcheck."
+    shellcheck task
 }
 
 function build() {
