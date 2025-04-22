@@ -129,7 +129,7 @@ else
 fi
 ```
 
-### Naming
+## Naming
 
 The naming of functions is important. There are basically two styles:
 
@@ -360,6 +360,53 @@ function convert-vault-file() {
 	# Cleanup temp files
 	rm -f "$TEMP_FILE"
 	rm -f "$TEMP_PART_FILE"
+}
+```
+
+### Process data
+
+This pattern tries to match the worklow of a jupyter notebook. Create a folder with the data processing scripts:
+
+```
+scripts
+├── 01_import-mail-data
+├── 02_transform-mail-data
+└── 03_export-mail-data
+```
+
+The following function lists the scripts and asks for the number of scripts to run. Every script until the entered number is concatenated and executed.
+
+```bash
+function process-data() {
+    while true; do
+        SCRIPTS=($(ls scripts))
+
+        echo -e "Available scripts:\n"
+        for INDEX in "${!SCRIPTS[@]}"; do
+            echo "$((INDEX+1)): ${SCRIPTS[$INDEX]}"
+        done
+        echo ""
+        read -p "Enter the number of scripts to run (or 'q' to quit): " USER_INPUT
+        if [ "${USER_INPUT}" = "q" ]; then
+            break
+        fi
+
+        TEMP_FILE=$(mktemp)
+        for INDEX in "${!SCRIPTS[@]}"; do
+            if [ $USER_INPUT -ge $((INDEX+1)) ]; then
+                cat "scripts/${SCRIPTS[$INDEX]}" >> "$TEMP_FILE"
+                echo >> "$TEMP_FILE"
+            fi
+        done
+
+        clear
+        echo -e "\nPython Output:\n\n---"
+        python "$TEMP_FILE"
+        EXIT_CODE=$?
+        echo -e "---\n"
+        echo -e "Exit code: $EXIT_CODE\n"
+        rm "$TEMP_FILE"
+    done
 }
 ```
 
