@@ -79,8 +79,6 @@ function help() {
     printf "$COLUMN" "lint" "" "Run pre-commit and update index.html."
     printf "$COLUMN" "source" "" "Source the Python virtual env."
     printf "$COLUMN" "version" "" "Show version of required tools."
-
-    echo
 }
 ```
 
@@ -555,15 +553,22 @@ function help() {
     # Print table rows
 
     printf "$COLUMN" "all" "" "Run all tasks."
-    printf "$COLUMN" "install" "" "Install node packages."
-    printf "$COLUMN" "dev" "" "Run 11ty server."
     printf "$COLUMN" "build" "" "Build the 11ty website."
+    printf "$COLUMN" "dev" "" "Run 11ty server."
+    printf "$COLUMN" "install" "" "Install node packages."
+    printf "$COLUMN" "lint" "" "Lint code with prettier."
+    printf "$COLUMN" "run-tests" "" "Test with shellcheck."
     printf "$COLUMN" "serve" "" "Serve the 11ty output folder."
     printf "$COLUMN" "version" "" "Show version of required tools."
 
     echo
 }
 
+# Import commands
+
+source bin/*
+
+# Project commands
 
 function install() {
     npm install
@@ -571,6 +576,15 @@ function install() {
 
 function dev() {
     npx eleventy --serve
+}
+
+function lint() {
+    pnpm exec prettier . --write
+}
+
+function run-tests() {
+    echo "Test with shellcheck."
+    shellcheck task
 }
 
 function build() {
