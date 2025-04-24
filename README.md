@@ -616,3 +616,26 @@ Implementations of the task file standard can be accessed from these projects:
 - [Mint-System/Odoo-Wiki](https://github.com/Mint-Wiki/Odoo-Build/blob/main/task)
 - [Mint-System/Website](https://github.com/Mint-System/Website/blob/main/task)
 - [Mint-System/Wiki](https://github.com/Mint-System/Wiki/blob/main/task)
+
+## Library
+
+The repository of this website provides a library of reusable functions.
+
+Clone the repository into your home folder:
+
+```bash
+cd ~
+git clone git@github.com:janikvonrotz/taskfile.build.git
+```
+
+In your task file you can import these functions from the tasfile library.
+
+### commit-with-llm
+
+```bash
+    printf "$COLUMN" "commit-with-llm" "" "Commit with llm generated commit message."
+
+# Import commands
+
+source ~/taskfile.build/bin/commit-with-llm
+```
