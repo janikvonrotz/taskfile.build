@@ -414,14 +414,10 @@ function process-data() {
 
 ## Usage
 
-Running the task file requires a shell alias: `alias task='./task'`
-
-Show the available commands with `task help`.
-
-From the specification the project can be installed with `task install`.
-
-To source the Python environment run `source task source`.
-
+Running the task file requires a shell alias: `alias task='./task'`\
+Show the available commands with `task help`.\
+From the specification the project can be installed with `task install`.\
+To source the Python environment run `source task source`.\
 Execute all commands with `task all`.
 
 ### Completion
@@ -533,7 +529,7 @@ pipeline {
 
 ## Example
 
-This website is built with a task file. Here is the source:
+This website is built with a `task` file. Here is the source:
 
 ```bash
 #!/bin/bash
@@ -615,6 +611,7 @@ Implementations of the task file standard can be accessed from these projects:
 - [janikvonrotz/dotfiles](https://github.com/janikvonrotz/dotfiles/blob/main/task)
 - [janikvonrotz/python.casa](https://github.com/janikvonrotz/python.casa/blob/main/task)
 - [Mint-System/Ansible-Build](https://github.com/Mint-System/Ansible-Build/blob/main/task)
+- [Mint-System/Kubernetes-Build](https://github.com/Mint-System/Kubernetes-Build/blob/main/task)
 - [Mint-System/Odoo-Build](https://github.com/Mint-System/Odoo-Build/blob/16.0/task)
 - [Mint-System/Odoo-Wiki](https://github.com/Mint-Wiki/Odoo-Build/blob/main/task)
 - [Mint-System/Website](https://github.com/Mint-System/Website/blob/main/task)
