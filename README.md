@@ -136,7 +136,7 @@ The naming of functions is important. There are basically two styles:
 1. Action + Object
 2. Object + Action
 
-The task file function use the first style. The name of function starts with the action followed by the object. The object definition can be singular and/or plural.
+The task file functions use the first style. The name of the function starts with an action followed by an object. The object name can be singular or plural.
 
 **Examples for actions**: <span id="actions">activate, install, dev, develop, init, build, start, update, remove, delete, enable, disable, template, convert, create, edit, change, get, set, patch, fetch, generate, push, pull, import, export, list, publish, release, test, setup, prepare, restart, stop, store, restore, translate, upgrade, zip, visualize, sync, switch, run, reset, load, dump, checkout, commit, drop, deploy, handle, trigger, render, lint, uninstall, split, parse, fix, refactor, transform, cat, ls, rm, serve, help, show, filter, login, logout, encrypt, decrypt, upload, download, analyse, transpile, compile, minify, copy</span>
 
@@ -148,7 +148,7 @@ The task file function use the first style. The name of function starts with the
 
 ## Patterns
 
-The task file showed above is very basic. Commands can have parameters and functions call each other. The following is a collection of more complex task file patterns.
+The task file showed above is very basic. Commands can have parameters and call each other. The following is a collection of more complex task file patterns.
 
 ### Set default parameter
 
@@ -246,6 +246,8 @@ function generate-password-hash() {
     bin/password-hash
 }
 ```
+
+The Python script: `bin/password-hash`
 
 ```python
 #!/usr/bin/env python3
