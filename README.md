@@ -642,7 +642,7 @@ cd ~
 git clone git@github.com:janikvonrotz/taskfile.build.git
 ```
 
-In your task file you can import these functions from the tasfile library.
+In your task file you can import these functions from the taskfile library.
 
 ### commit-with-llm
 
