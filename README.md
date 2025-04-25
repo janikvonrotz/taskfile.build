@@ -651,5 +651,5 @@ In your task file you can import these functions from the taskfile library.
 
 # Import commands
 
-source ~/taskfile.build/bin/commit-with-llm
+[ -f ~/taskfile.build/bin/commit-with-llm ] && source ~/taskfile.build/bin/commit-with-llm
 ```
