@@ -1,3 +1,4 @@
+#!/bin/bash
 function commit-with-llm() {
 
     mkdir -p tmp
@@ -29,10 +30,14 @@ EOF
     less "$RESULT_FILE"
 
     # Ask for confirmation before updating files
-    read -p "Do you want to commit with this message? (y/n): " CONFIRM
-    if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
+    read -p "Do you want to commit or edit before commit the message? (y/e/n): " CONFIRM
+    if [[ ! "$CONFIRM" =~ ^[YyEe]$ ]]; then
         exit 0
     fi
 
-    git commit -m "$RESULT"
+    if [[ "$CONFIRM" =~ ^[Ee]$ ]]; then
+        git commit --amend -m "$RESULT"
+    else
+        git commit -m "$RESULT"
+    fi
 }
