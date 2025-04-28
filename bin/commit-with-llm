@@ -35,9 +35,8 @@ EOF
         exit 0
     fi
 
+    git commit -m "$RESULT"
     if [[ "$CONFIRM" =~ ^[Ee]$ ]]; then
-        git commit --amend -m "$RESULT"
-    else
-        git commit -m "$RESULT"
+        git commit --amend
     fi
 }
