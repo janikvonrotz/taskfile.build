@@ -1,0 +1,5 @@
+#!/bin/bash
+function list-env() {
+    TASK_CONFIG_DIR=${TASK_CONFIG_DIR:="$HOME/.config/taskfile.build"}
+    ls -a1 "$TASK_CONFIG_DIR"
+}

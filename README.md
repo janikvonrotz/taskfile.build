@@ -653,3 +653,44 @@ In your task file you can import these functions from the taskfile library.
 
 [ -f ~/taskfile.build/bin/commit-with-llm ] && source ~/taskfile.build/bin/commit-with-llm
 ```
+
+### list-env
+
+```bash
+    printf "$COLUMN" "list-env" "" "List env files."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/list-env ] && source ~/taskfile.build/bin/list-env
+```
+
+### show-env
+
+```bash
+    printf "$COLUMN" "show-env" "[env]" "Output content of the env file."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/show-env ] && source ~/taskfile.build/bin/show-env
+```
+
+
+### edit-env
+
+```bash
+    printf "$COLUMN" "edit-env" "[env]" "Open env file in default editor."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/edit-env ] && source ~/taskfile.build/bin/edit-env
+```
+
+### load-env
+
+```bash
+    printf "$COLUMN" "load-env" "[env]" "Load and export env file."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/load-env ] && source ~/taskfile.build/bin/load-env
+```
