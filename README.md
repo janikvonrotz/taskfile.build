@@ -674,6 +674,15 @@ In your task file you can import these functions from the taskfile library.
 [ -f ~/taskfile.build/bin/show-env ] && source ~/taskfile.build/bin/show-env
 ```
 
+### copy-env
+
+```bash
+    printf "$COLUMN" "copy-env" "[env][env]" "Copy env file."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/copy-env ] && source ~/taskfile.build/bin/copy-env
+```
 
 ### edit-env
 
