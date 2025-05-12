@@ -2,6 +2,6 @@
 function load-env() {
     TASK_CONFIG_DIR=${TASK_CONFIG_DIR:="$HOME/.config/taskfile.build"}
     ENV_FILEPATH="$TASK_CONFIG_DIR/.env.$1"
-    echo "Load env file $ENV_FILEPATH"
-    export $(cat "$ENV_FILEPATH" | sed 's/#.*//g' | xargs)
+    echo "Source env file $ENV_FILEPATH"
+    source "$ENV_FILEPATH"
 }
