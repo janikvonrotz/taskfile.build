@@ -638,8 +638,7 @@ The repository of this website provides a library of reusable functions.
 Clone the repository into your home folder:
 
 ```bash
-cd ~
-git clone git@github.com:janikvonrotz/taskfile.build.git
+[ ! -d "$HOME/taskfile.build" ] && git clone git@github.com:janikvonrotz/taskfile.build.git ~/taskfile.build
 ```
 
 In your task file you can import these functions from the taskfile library.
