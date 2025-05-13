@@ -626,7 +626,7 @@ Implementations of the task file standard can be accessed from these projects:
 - [janikvonrotz/python.casa](https://github.com/janikvonrotz/python.casa/blob/main/task)
 - [Mint-System/Ansible-Build](https://github.com/Mint-System/Ansible-Build/blob/main/task)
 - [Mint-System/Kubernetes-Build](https://github.com/Mint-System/Kubernetes-Build/blob/main/task)
-- [Mint-System/Odoo-Build](https://github.com/Mint-System/Odoo-Build/blob/16.0/task)
+- [Mint-System/Odoo-Build](https://github.com/Mint-System/Odoo-Build/blob/main/task)
 - [Mint-System/Odoo-Wiki](https://github.com/Mint-Wiki/Odoo-Build/blob/main/task)
 - [Mint-System/Website](https://github.com/Mint-System/Website/blob/main/task)
 - [Mint-System/Wiki](https://github.com/Mint-System/Wiki/blob/main/task)
