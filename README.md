@@ -643,6 +643,14 @@ Clone the repository into your home folder:
 
 In your task file you can import these functions from the taskfile library.
 
+### help
+
+```bash
+# Import commands
+
+[ -f ~/taskfile.build/bin/help ] && source ~/taskfile.build/bin/help
+```
+
 ### commit-with-llm
 
 ```bash
