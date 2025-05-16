@@ -646,6 +646,8 @@ In your task file you can import these functions from the taskfile library.
 ### help
 
 ```bash
+    printf "$COLUMN" "help" "[grep]" "Show help for commands."
+
 # Import commands
 
 [ -f ~/taskfile.build/bin/help ] && source ~/taskfile.build/bin/help
