@@ -712,3 +712,13 @@ In your task file you can import these functions from the taskfile library.
 
 [ -f ~/taskfile.build/bin/load-env ] && source ~/taskfile.build/bin/load-env
 ```
+
+### update-submodule
+
+```bash
+    printf "$COLUMN" "update-submodule" "" "Update git submodules."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/update-submodule ] && source ~/taskfile.build/bin/update-submodule
+```
