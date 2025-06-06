@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function rename-env() {
+    if test -z "$1"; then echo "\$1 is empty."; exit; fi
+    if test -z "$2"; then echo "\$2 is empty."; exit; fi
+    TASK_CONFIG_DIR=${TASK_CONFIG_DIR:="$HOME/.config/taskfile.build"}
+    SOURCE_ENV="$TASK_CONFIG_DIR/.env.$1"
+    TARGET_ENV="$TASK_CONFIG_DIR/.env.$2"
+    echo "Rename $1 to $2."
+    mv "$SOURCE_ENV" "$TARGET_ENV"
+}

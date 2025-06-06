@@ -715,6 +715,16 @@ In your task file you can import these functions from the taskfile library.
 [ -f ~/taskfile.build/bin/load-env ] && source ~/taskfile.build/bin/load-env
 ```
 
+### rename-env
+
+```bash
+    printf "$COLUMN" "rename-env" "[env][env]" "Rename env file."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/rename-env ] && source ~/taskfile.build/bin/rename-env
+```
+
 ### update-submodule
 
 ```bash

@@ -2,5 +2,22 @@
 
 function list-env() {
     TASK_CONFIG_DIR=${TASK_CONFIG_DIR:="$HOME/.config/taskfile.build"}
-    ls -a1 "$TASK_CONFIG_DIR"
+    
+    # Define column widths
+    name_width=20
+    file_width=30
+    
+    # Print table header
+    printf "| %-${name_width}s | %-${file_width}s |\n" "Name" "File"
+    echo "|$(printf '%*s' $((name_width + 2)) '' | tr ' ' '-')|$(printf '%*s' $((file_width + 2)) '' | tr ' ' '-')|"
+
+    for env_file in "$TASK_CONFIG_DIR"/.env.*; do
+        if [ -f "$env_file" ]; then
+            ENV_NAME="${env_file##*/}"
+            ENV_NAME="${ENV_NAME#.env.}"
+            ENV_FILE="$env_file"
+            
+            printf "| %-${name_width}s | %-${file_width}s |\n" "$ENV_NAME" "${ENV_FILE##*/}"
+        fi
+    done
 }
