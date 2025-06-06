@@ -18,7 +18,7 @@ It is to be understood as a software development pattern to standardize the inst
 
 ## Specification
 
-The specification is a short guide to setting up a task file for a Python project.
+The specification is a short guide to set up a task file for a Python project.
 
 - Create a file `task` in your project.
 
