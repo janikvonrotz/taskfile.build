@@ -724,3 +724,13 @@ In your task file you can import these functions from the taskfile library.
 
 [ -f ~/taskfile.build/bin/update-submodule ] && source ~/taskfile.build/bin/update-submodule
 ```
+
+### update-with-llm
+
+```bash
+    printf "$COLUMN" "update-with-llm" "[glob][prompt]" "Feed files matching glob with prompt to LLM and apply file changes."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/update-with-llm ] && source ~/taskfile.build/bin/update-with-llm
+```

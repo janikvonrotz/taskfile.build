@@ -1,4 +1,5 @@
 #!/bin/bash
+
 function load-env() {
     TASK_CONFIG_DIR=${TASK_CONFIG_DIR:="$HOME/.config/taskfile.build"}
     ENV_FILEPATH="$TASK_CONFIG_DIR/.env.$1"

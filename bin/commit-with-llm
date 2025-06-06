@@ -1,4 +1,5 @@
 #!/bin/bash
+
 function commit-with-llm() {
 
     mkdir -p tmp

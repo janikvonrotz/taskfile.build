@@ -1,4 +1,5 @@
 #!/bin/bash
+
 function update-submodule() {
     echo "Update git submodules."
     git submodule update --init --recursive --checkout --depth=1
