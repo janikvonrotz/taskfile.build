@@ -19,7 +19,6 @@ function help() {
     echo "|$(printf '%*s' $((CMD_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((OPT_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((DESC_WIDTH + 2)) '' | tr ' ' '-')|"
 
     # Print table rows
-
     printf "$COLUMN" "all" "" "Run all tasks."
     printf "$COLUMN" "build" "" "Build the 11ty website."
     printf "$COLUMN" "commit-with-llm" "" "Commit with llm generated commit message."

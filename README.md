@@ -73,7 +73,6 @@ function help() {
     echo "|$(printf '%*s' $((CMD_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((OPT_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((DESC_WIDTH + 2)) '' | tr ' ' '-')|"
 
     # Print table rows
-
     printf "$COLUMN" "all" "" "Run all tasks."
     printf "$COLUMN" "install" "" "Setup the local environment."
     printf "$COLUMN" "lint" "" "Run pre-commit and update index.html."
@@ -104,7 +103,7 @@ function lint() {
 }
 ```
 
-- Finally finish the file with command switch cases.
+- Finish the task file with command switch cases.
 
 ```bash
 if declare -f "$1" > /dev/null; then
@@ -126,6 +125,16 @@ else
     esac
 fi
 ```
+
+These are the main parts of every task file script.
+
+## Usage
+
+Running the task file requires a shell alias: `alias task='./task'`\
+Show the available commands with `task help`.\
+From the specification the project can be installed with `task install`.\
+To source the Python environment run `source task source`.\
+Execute all commands with `task all`.
 
 ## Naming
 
@@ -410,13 +419,9 @@ function process-data() {
 }
 ```
 
-## Usage
+## Integration
 
-Running the task file requires a shell alias: `alias task='./task'`\
-Show the available commands with `task help`.\
-From the specification the project can be installed with `task install`.\
-To source the Python environment run `source task source`.\
-Execute all commands with `task all`.
+The task file is intended to be integrated into the shell setup. Where applications provides a domain specific language (DSL) ensure that the DSL only calls the task file. 
 
 ### Completion
 
@@ -551,7 +556,6 @@ function help() {
     echo "|$(printf '%*s' $((CMD_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((OPT_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((DESC_WIDTH + 2)) '' | tr ' ' '-')|"
 
     # Print table rows
-
     printf "$COLUMN" "all" "" "Run all tasks."
     printf "$COLUMN" "build" "" "Build the 11ty website."
     printf "$COLUMN" "dev" "" "Run 11ty server."
@@ -560,8 +564,6 @@ function help() {
     printf "$COLUMN" "run-tests" "" "Test with shellcheck."
     printf "$COLUMN" "serve" "" "Serve the 11ty output folder."
     printf "$COLUMN" "version" "" "Show version of required tools."
-
-    echo
 }
 
 # Import commands
