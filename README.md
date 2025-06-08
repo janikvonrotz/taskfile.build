@@ -738,7 +738,7 @@ In your task file you can import these functions from the taskfile library.
 ### update-with-llm
 
 ```bash
-    printf "$COLUMN" "update-with-llm" "[glob][prompt]" "Feed files matching glob with prompt to LLM and apply file changes."
+    printf "$COLUMN" "update-with-llm" "[glob][prompt]" "Feed files matching glob to LLM and apply changes."
 
 # Import commands
 
