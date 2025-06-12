@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function init-venv() {
+    if [ ! -d "venv$GIT_BRANCH" ]; then
+        echo "Create virtualenv venv$GIT_BRANCH."
+        uv venv "venv$GIT_BRANCH"
+    fi
+}
+
+function activate-venv() {
+    echo "Source virtualenv venv$GIT_BRANCH."
+    source "venv$GIT_BRANCH/bin/activate"
+}

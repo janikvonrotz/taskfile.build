@@ -655,6 +655,16 @@ In your task file you can import these functions from the taskfile library.
 [ -f ~/taskfile.build/bin/help ] && source ~/taskfile.build/bin/help
 ```
 
+###
+
+```bash
+    printf "$COLUMN" "init-venv" "" "Initialize and activate Python virtual env."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/init-venv ] && source ~/taskfile.build/bin/venv
+```
+
 ### commit-with-llm
 
 ```bash
