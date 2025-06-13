@@ -1,0 +1,10 @@
+#!/bin/bash
+
+function store-dotenv() {
+    if [ -f .env ]; then
+        echo "Store .env file in pass: $PASS_ENTRY"
+        cat .env | pass insert -m -f "$PASS_ENTRY"
+    else
+        echo "No .env file found."
+    fi
+}

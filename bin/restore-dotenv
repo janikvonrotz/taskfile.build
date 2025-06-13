@@ -1,0 +1,10 @@
+#!/bin/bash
+
+function restore-dotenv() {
+    if pass find "$PASS_ENTRY" >/dev/null; then
+        echo "Restore .env file from pass: $PASS_ENTRY"
+        pass show "$PASS_ENTRY" > .env
+    else
+        echo "Pass entry not found."
+    fi
+}

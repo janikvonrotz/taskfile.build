@@ -805,3 +805,25 @@ In your task file you can import these functions from the taskfile library.
 
 [ -f ~/taskfile.build/bin/update-submodule ] && source ~/taskfile.build/bin/update-submodule
 ```
+
+### Pass
+
+#### store-dotenv
+
+```bash
+    printf "$COLUMN" "store-dotenv" "" "Store content of .env in pass entry."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/store-dotenv ] && source ~/taskfile.build/bin/store-dotenv
+```
+
+#### restore-dotenv
+
+```bash
+    printf "$COLUMN" "restore-dotenv" "" "Restore content of .env from pass entry."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/restore-dotenv ] && source ~/taskfile.build/bin/restore-dotenv
+```
