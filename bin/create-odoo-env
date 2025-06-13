@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function create-odoo-env() {
+    if test -z "$1"; then echo "\$1 is empty."; exit; fi
+
+    init-config-dir
+    ENV_FILEPATH="$TASK_CONFIG_DIR/.env.$1"
+    if [ -f "$ENV_FILEPATH" ]; then
+        echo "Env file already exists: $ENV_FILEPATH"
+        exit 1
+    fi
+
+    echo "Init env file: $ENV_FILEPATH"
+    echo "ODOO_URL=$ODOO_URL" > "$ENV_FILEPATH"
+    echo "ODOO_DATABASE=$ODOO_DATABASE" >> "$ENV_FILEPATH"
+    echo "ODOO_USERNAME=$ODOO_USERNAME" >> "$ENV_FILEPATH"
+    echo "ODOO_PASSWORD=$ODOO_PASSWORD" >> "$ENV_FILEPATH"
+
+    echo "Edit with: task edit-env $1"
+}

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+function init-config-dir() {
+    echo "Ensure $TASK_CONFIG_DIR exists"
+    mkdir -p "$TASK_CONFIG_DIR"
+}
