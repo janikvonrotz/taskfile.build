@@ -5,19 +5,23 @@ function list-env() {
     
     # Define column widths
     name_width=20
-    file_width=30
+    file_width=10
     
     # Print table header
-    printf "| %-${name_width}s | %-${file_width}s |\n" "Name" "File"
+    printf "| %-${name_width}s | %-${file_width}s |\n" "Name" "Type"
     echo "|$(printf '%*s' $((name_width + 2)) '' | tr ' ' '-')|$(printf '%*s' $((file_width + 2)) '' | tr ' ' '-')|"
 
-    for env_file in "$TASK_CONFIG_DIR"/.env.*; do
-        if [ -f "$env_file" ]; then
-            ENV_NAME="${env_file##*/}"
+    for ENV_FILE in "$TASK_CONFIG_DIR"/.env.*; do
+        if [ -f "$ENV_FILE" ]; then
+            ENV_NAME="${ENV_FILE##*/}"
             ENV_NAME="${ENV_NAME#.env.}"
-            ENV_FILE="$env_file"
+
+            ENV_TYPE="Odoo"
+            if grep -q "NEXTCLOUD" "$ENV_FILE"; then
+                ENV_TYPE="Nextcloud"
+            fi
             
-            printf "| %-${name_width}s | %-${file_width}s |\n" "$ENV_NAME" "${ENV_FILE##*/}"
+            printf "| %-${name_width}s | %-${file_width}s |\n" "$ENV_NAME" "$ENV_TYPE"
         fi
     done
 }
