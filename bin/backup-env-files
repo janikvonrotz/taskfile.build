@@ -1,13 +1,12 @@
 #!/bin/bash
 
 function backup-env-files() {
-    if test -z "$1"; then echo "\$1 is empty."; exit; fi
+    if test -z "$1"; then echo "\$1 is empty."; exit 1; fi
 
     TASK_CONFIG_DIR=${TASK_CONFIG_DIR:-$HOME/.config/taskfile.build}
-    BACKUP_FILE="$(date +'%Y-%m-%d')-backup-env-files.tar.gz"
-    BACKUP_FILEPATH="$1/$BACKUP_FILE"
+    BACKUP_FILEPATH="$1/$(date +'%Y-%m-%d')-backup-env-files.tar.gz"
 
     echo "Backing up env files to: $BACKUP_FILEPATH"
-    tar -czf "$BACKUP_FILE" "$TASK_CONFIG_DIR/.env.*"
-    mv "$BACKUP_FILE" "$BACKUP_FILEPATH"
+    cd "$TASK_CONFIG_DIR" || exit 1
+    tar -czf "$BACKUP_FILEPATH" .env.*
 }
