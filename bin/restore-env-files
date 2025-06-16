@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function restore_env_files() {
+    if test -z "$1"; then echo "\$1 is empty."; exit; fi
+
+    TASK_CONFIG_DIR=${TASK_CONFIG_DIR:-$HOME/.config/taskfile.build}
+    BACKUP_FILEPATH="$1"
+
+    echo "Restore env files from: $BACKUP_FILEPATH"
+    tar -xzf "$BACKUP_FILEPATH" -C "$TASK_CONFIG_DIR"
+}

@@ -772,6 +772,26 @@ In your task file you can import these functions from the taskfile library.
 [ -f ~/taskfile.build/bin/remove-env ] && source ~/taskfile.build/bin/remove-env
 ```
 
+#### backup-env-files
+
+```bash
+    printf "$COLUMN" "backup-env-files" "[path]" "Archive and copy env files to target location."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/backup-env-files ] && source ~/taskfile.build/bin/backup-env-files
+```
+
+### restore-env-files
+
+```bash
+    printf "$COLUMN" "restore-env-files" "[path]" "Extract and copy env files from backup file."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/restore-env-files ] && source ~/taskfile.build/bin/restore-env-files
+```
+
 ### LLM
 
 #### commit-with-llm
