@@ -13,7 +13,7 @@ function update-with-llm() {
     FILES=("${@:1:$#-1}")
 
     echo -e "Load these files into prompt:\n\n${FILES[*]}\n"
-    echo -e "Task: $TASK_DESCRIPTION\n"
+    echo -e "Task: $TASK_DESCRIPTION"
 
     FILE_CONTENTS=""
     for FILE in "${FILES[@]}"; do
