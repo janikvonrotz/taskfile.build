@@ -341,7 +341,7 @@ function convert-vault-file() {
     TEMP_PART_FILE=$(mktemp)
     WRITE_FINISHED=false
     CURRENT_KEY=""
-    
+
     while IFS= read -r LINE; do
         # Check for keyword
         if [[ "$LINE" =~ "!vault" ]]; then
@@ -352,7 +352,7 @@ function convert-vault-file() {
                 VALUE=$(cat "$TEMP_PART_FILE")
                 echo "$CURRENT_KEY: $VALUE" >> "$TEMP_FILE"
             fi
-            
+
             # Set up for new vault entry
             CURRENT_KEY=$(echo "$LINE" | cut -d':' -f1)
             # Clear the file
@@ -366,14 +366,14 @@ function convert-vault-file() {
             fi
         fi
     done < "$FILE_PATH"
-    
+
     # Process the final vault entry
     if [ "$WRITE_FINISHED" = true ] && [ -n "$CURRENT_KEY" ] && [ -s "$TEMP_PART_FILE" ]; then
         ansible-vault decrypt "$TEMP_PART_FILE"
         VALUE=$(cat "$TEMP_PART_FILE")
         echo "$CURRENT_KEY: $VALUE" >> "$TEMP_FILE"
     fi
-    
+
     # Output assembled file
     cat "$TEMP_FILE"
     # Cleanup temp files
@@ -431,7 +431,7 @@ function process-data() {
 
 ## Integration
 
-The task file is intended to be integrated into the shell setup. Where applications provides a domain specific language (DSL) ensure that the DSL only calls the task file. 
+The task file is intended to be integrated into the shell setup. Where applications provides a domain specific language (DSL) ensure that the DSL only calls the task file.
 
 ### Completion
 
@@ -703,7 +703,6 @@ In your task file you can import these functions from the taskfile library.
 
 [ -f ~/taskfile.build/bin/create-nextcloud-env ] && source ~/taskfile.build/bin/create-nextcloud-env
 ```
-
 
 #### list-env
 
