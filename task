@@ -1,28 +1,19 @@
 #!/bin/bash
 set -e
 
-function help() {
-    echo
-    echo "task <command> [options]"
-    echo
-    echo "commands:"
-    echo
-
-    # Define column widths
-    CMD_WIDTH=10
+function help-table() {
+    CMD_WIDTH=18
     OPT_WIDTH=6
-    DESC_WIDTH=40
+    DESC_WIDTH=42
     COLUMN="| %-${CMD_WIDTH}s | %-${OPT_WIDTH}s | %-${DESC_WIDTH}s |\n"
 
-    # Print table header
     printf "$COLUMN" "Command" "Option" "Description"
     echo "|$(printf '%*s' $((CMD_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((OPT_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((DESC_WIDTH + 2)) '' | tr ' ' '-')|"
-
-    # Print table rows
     printf "$COLUMN" "all" "" "Run all tasks."
     printf "$COLUMN" "build" "" "Build the 11ty website."
     printf "$COLUMN" "commit-with-llm" "" "Commit with llm generated commit message."
     printf "$COLUMN" "dev" "" "Run 11ty server."
+    printf "$COLUMN" "help" "[grep]" "Show help for commands."
     printf "$COLUMN" "install" "" "Install node packages."
     printf "$COLUMN" "lint" "" "Lint code with prettier."
     printf "$COLUMN" "run-tests" "" "Test with shellcheck."
@@ -32,12 +23,13 @@ function help() {
 
 # Import commands
 
-source bin/*
+source ./bin/help
+source ./bin/commit-with-llm
 
 # Project commands
 
 function install() {
-    npm install
+    pnpm install
 }
 
 function dev() {

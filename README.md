@@ -339,36 +339,46 @@ function convert-vault-file() {
     FILE_PATH="$1"
     TEMP_FILE=$(mktemp)
     TEMP_PART_FILE=$(mktemp)
-	WRITE_FINISHED=false
-
-	while IFS= read -r LINE; do
-		# Check for keyword
-		if [[ "$LINE" =~ "!vault" ]]; then
-			# Process part if ready to write
-			if [ "$WRITE_FINISHED" ] && [ -s "$TEMP_PART_FILE" ]; then
-				# Decrypt part file and write to assemble file
-				ansible-vault decrypt "$TEMP_PART_FILE"
-				KEY=$(echo "$LINE" | cut -d':' -f1)
-				VALUE=$(cat "$TEMP_PART_FILE")
-				echo "$KEY: $VALUE" >> "$TEMP_FILE"
-			fi
-			# Clear the file
-			: > "$TEMP_PART_FILE"
-			# Flag as ready to write
-			WRITE_FINISHED=true
-		else
-			if [ "$WRITE_FINISHED" ]; then
-				# Pipe into part file
-				echo "$LINE" >> "$TEMP_PART_FILE"
-			fi
-		fi
-	done < "$FILE_PATH"
-
-	# Output assembled file
-	cat "$TEMP_FILE"
-	# Cleanup temp files
-	rm -f "$TEMP_FILE"
-	rm -f "$TEMP_PART_FILE"
+    WRITE_FINISHED=false
+    CURRENT_KEY=""
+    
+    while IFS= read -r LINE; do
+        # Check for keyword
+        if [[ "$LINE" =~ "!vault" ]]; then
+            # Process previous vault entry if it exists
+            if [ "$WRITE_FINISHED" = true ] && [ -n "$CURRENT_KEY" ] && [ -s "$TEMP_PART_FILE" ]; then
+                # Decrypt part file and write to assemble file
+                ansible-vault decrypt "$TEMP_PART_FILE"
+                VALUE=$(cat "$TEMP_PART_FILE")
+                echo "$CURRENT_KEY: $VALUE" >> "$TEMP_FILE"
+            fi
+            
+            # Set up for new vault entry
+            CURRENT_KEY=$(echo "$LINE" | cut -d':' -f1)
+            # Clear the file
+            : > "$TEMP_PART_FILE"
+            # Flag as ready to write
+            WRITE_FINISHED=true
+        else
+            if [ "$WRITE_FINISHED" = true ]; then
+                # Pipe into part file
+                echo "$LINE" >> "$TEMP_PART_FILE"
+            fi
+        fi
+    done < "$FILE_PATH"
+    
+    # Process the final vault entry
+    if [ "$WRITE_FINISHED" = true ] && [ -n "$CURRENT_KEY" ] && [ -s "$TEMP_PART_FILE" ]; then
+        ansible-vault decrypt "$TEMP_PART_FILE"
+        VALUE=$(cat "$TEMP_PART_FILE")
+        echo "$CURRENT_KEY: $VALUE" >> "$TEMP_FILE"
+    fi
+    
+    # Output assembled file
+    cat "$TEMP_FILE"
+    # Cleanup temp files
+    rm -f "$TEMP_FILE"
+    rm -f "$TEMP_PART_FILE"
 }
 ```
 
@@ -538,27 +548,19 @@ This website is built with a `task` file. Here is the source:
 #!/bin/bash
 set -e
 
-function help() {
-    echo
-    echo "task <command> [options]"
-    echo
-    echo "commands:"
-    echo
-
-    # Define column widths
-    CMD_WIDTH=10
+function help-table() {
+    CMD_WIDTH=18
     OPT_WIDTH=6
-    DESC_WIDTH=40
+    DESC_WIDTH=42
     COLUMN="| %-${CMD_WIDTH}s | %-${OPT_WIDTH}s | %-${DESC_WIDTH}s |\n"
 
-    # Print table header
     printf "$COLUMN" "Command" "Option" "Description"
     echo "|$(printf '%*s' $((CMD_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((OPT_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((DESC_WIDTH + 2)) '' | tr ' ' '-')|"
-
-    # Print table rows
     printf "$COLUMN" "all" "" "Run all tasks."
     printf "$COLUMN" "build" "" "Build the 11ty website."
+    printf "$COLUMN" "commit-with-llm" "" "Commit with llm generated commit message."
     printf "$COLUMN" "dev" "" "Run 11ty server."
+    printf "$COLUMN" "help" "[grep]" "Show help for commands."
     printf "$COLUMN" "install" "" "Install node packages."
     printf "$COLUMN" "lint" "" "Lint code with prettier."
     printf "$COLUMN" "run-tests" "" "Test with shellcheck."
@@ -568,12 +570,13 @@ function help() {
 
 # Import commands
 
-source bin/*
+source ./bin/help
+source ./bin/commit-with-llm
 
 # Project commands
 
 function install() {
-    npm install
+    pnpm install
 }
 
 function dev() {
