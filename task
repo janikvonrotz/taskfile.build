@@ -21,9 +21,22 @@ function help-table() {
     printf "$COLUMN" "version" "" "Show version of required tools."
 }
 
+function help() {
+    echo
+    if [ -n "$1" ]; then
+        help-table | grep -i "$1" | column -t -s'|'
+    else
+        echo "task <command> [options]"
+        echo
+        echo "commands:"
+        echo
+        help-table
+    fi
+    echo
+}
+
 # Import commands
 
-source ./bin/help
 source ./bin/commit-with-llm
 
 # Project commands

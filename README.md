@@ -55,29 +55,33 @@ fi
 - Add a help function.
 
 ```bash
-function help() {
-    echo
-    echo "task <command> [options]"
-    echo
-    echo "commands:"
-    echo
-
-    # Define column widths
+function help-table() {
     CMD_WIDTH=10
     OPT_WIDTH=6
     DESC_WIDTH=40
     COLUMN="| %-${CMD_WIDTH}s | %-${OPT_WIDTH}s | %-${DESC_WIDTH}s |\n"
-
-    # Print table header
     printf "$COLUMN" "Command" "Option" "Description"
     echo "|$(printf '%*s' $((CMD_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((OPT_WIDTH + 2)) '' | tr ' ' '-')|$(printf '%*s' $((DESC_WIDTH + 2)) '' | tr ' ' '-')|"
-
-    # Print table rows
     printf "$COLUMN" "all" "" "Run all tasks."
+    printf "$COLUMN" "help" "[grep]" "Show help for commands."
     printf "$COLUMN" "install" "" "Setup the local environment."
     printf "$COLUMN" "lint" "" "Run pre-commit and update index.html."
     printf "$COLUMN" "source" "" "Source the Python virtual env."
     printf "$COLUMN" "version" "" "Show version of required tools."
+}
+
+function help() {
+    echo
+    if [ -n "$1" ]; then
+        help-table | grep -i "$1" | column -t -s'|'
+    else
+        echo "task <command> [options]"
+        echo
+        echo "commands:"
+        echo
+        help-table
+    fi
+    echo
 }
 ```
 
@@ -568,9 +572,22 @@ function help-table() {
     printf "$COLUMN" "version" "" "Show version of required tools."
 }
 
+function help() {
+    echo
+    if [ -n "$1" ]; then
+        help-table | grep -i "$1" | column -t -s'|'
+    else
+        echo "task <command> [options]"
+        echo
+        echo "commands:"
+        echo
+        help-table
+    fi
+    echo
+}
+
 # Import commands
 
-source ./bin/help
 source ./bin/commit-with-llm
 
 # Project commands
@@ -640,25 +657,21 @@ Implementations of the task file standard can be accessed from these projects:
 
 The repository of this website provides a library of reusable functions.
 
-Clone the repository into your home folder:
+Clone the repository into your home folder and ensure it is updated regurarly.
 
 ```bash
-[ ! -d "$HOME/taskfile.build" ] && git clone git@github.com:janikvonrotz/taskfile.build.git ~/taskfile.build
+if [ ! -d "$HOME/taskfile.build" ]; then
+    echo -e "\033[38;5;214mGit\033[0m: Clone taskfile repo"
+    git clone https://github.com/janikvonrotz/taskfile.build.git ~/taskfile.build
+else
+    echo -e "\033[38;5;214mGit\033[0m: Pull taskfile repo"
+    git -C ~/taskfile.build pull
+fi
 ```
 
 In your task file you can import these functions from the taskfile library.
 
 ### Task
-
-#### help
-
-```bash
-    printf "$COLUMN" "help" "[grep]" "Show help for commands."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/help ] && source ~/taskfile.build/bin/help
-```
 
 #### init-config-dir
 
