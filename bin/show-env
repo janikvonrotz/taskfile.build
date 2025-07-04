@@ -2,7 +2,13 @@
 
 function show-env() {
     if test -z "$1"; then echo "\$1 is empty."; exit; fi
+
     TASK_CONFIG_DIR=${TASK_CONFIG_DIR:="$HOME/.config/taskfile.build"}
     ENV_FILEPATH="$TASK_CONFIG_DIR/.env.$1"
+
+    if [ ! -f "$ENV_FILEPATH" ]; then
+        echo "Environment '$1' not found."
+        return 1 # Exit with non-zero status if file does not exist
+    fi
     cat "$ENV_FILEPATH" | sed 's/^/export /'
 }
