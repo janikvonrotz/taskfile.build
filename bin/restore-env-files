@@ -7,5 +7,6 @@ function restore-env-files() {
     BACKUP_FILEPATH="$1"
 
     echo "Restore env files from: $BACKUP_FILEPATH"
+    mkdir -p "$TASK_CONFIG_DIR"
     tar -xzf "$BACKUP_FILEPATH" -C "$TASK_CONFIG_DIR"
 }
