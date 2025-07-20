@@ -683,6 +683,17 @@ In your task file you can import these functions from the taskfile library.
 [ -f ~/taskfile.build/bin/init-config-dir ] && source ~/taskfile.build/bin/init-config-dir
 ```
 
+#### template-dotenv
+
+```bash
+    printf "$COLUMN" "template-dotenv" "" "Generate .env from .env.template."
+
+# Import commands
+
+[ -f ~/taskfile.build/bin/template-dotenv ] && source ~/taskfile.build/bin/template-dotenv
+```
+
+
 ### Python
 
 #### init-venv

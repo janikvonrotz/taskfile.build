@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function template-dotenv() {
+    local template=".env.template"
+    local output=".env"
+
+    if [[ ! -f "$template" ]]; then
+        echo "Template file '$template' not found."
+        return 1
+    fi
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        if [[ "$line" =~ \$\(.+\) ]]; then
+            eval "echo $line" >> "$output"
+        else
+            echo "$line" >> "$output"
+        fi
+    done < "$template"
+
+    echo "Generated .env from $template"
+}
