@@ -660,13 +660,15 @@ The repository of this website provides a library of reusable functions.
 Clone the repository into your home folder and ensure it is updated regurarly.
 
 ```bash
-if [ ! -d "$HOME/taskfile.build" ]; then
-    echo -e "\033[38;5;214mGit\033[0m: Clone taskfile repo"
-    git clone https://github.com/janikvonrotz/taskfile.build.git ~/taskfile.build
-else
-    echo -e "\033[38;5;214mGit\033[0m: Pull taskfile repo"
-    git -C ~/taskfile.build pull
-fi
+function clone-taskfile(){
+    if [ ! -d "$HOME/taskfile.build" ]; then
+        echo -e "\033[38;5;214mGit\033[0m: Clone taskfile repo"
+        git clone https://git.taskfile.build "$HOME/taskfile.build"
+    else
+        echo -e "\033[38;5;214mGit\033[0m: Pull taskfile repo"
+        git -C "$HOME/taskfile.build" pull
+    fi
+}
 ```
 
 In your task file you can import these functions from the taskfile library.
