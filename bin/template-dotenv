@@ -9,6 +9,7 @@ function template-dotenv() {
         return 1
     fi
 
+    echo "Append to .env from $template."
     while IFS= read -r line || [[ -n "$line" ]]; do
         if [[ "$line" =~ \$\(.+\) ]]; then
             eval "echo $line" >> "$output"
@@ -16,6 +17,4 @@ function template-dotenv() {
             echo "$line" >> "$output"
         fi
     done < "$template"
-
-    echo "Generated .env from $template"
 }
