@@ -671,26 +671,30 @@ fi
 
 In your task file you can import these functions from the taskfile library.
 
+```bash
+if [ -d "$HOME/taskfile.build/bin" ]; then
+    for file in "$HOME/taskfile.build/bin/"*; do
+        if [ -f "$file" ]; then
+            source "$file"
+        fi
+    done
+fi
+```
+
 ### Task
+
+For autocomplete add the command to the help table.
 
 #### init-config-dir
 
 ```bash
     printf "$COLUMN" "init-config-dir" "" "Setup task file config dir."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/init-config-dir ] && source ~/taskfile.build/bin/init-config-dir
 ```
 
 #### template-dotenv
 
 ```bash
     printf "$COLUMN" "template-dotenv" "" "Generate .env from .env.template."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/template-dotenv ] && source ~/taskfile.build/bin/template-dotenv
 ```
 
 
@@ -700,10 +704,6 @@ In your task file you can import these functions from the taskfile library.
 
 ```bash
     printf "$COLUMN" "init-venv" "" "Initialize and activate Python virtual env."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/init-venv ] && source ~/taskfile.build/bin/venv
 ```
 
 ### Environment
@@ -712,110 +712,66 @@ In your task file you can import these functions from the taskfile library.
 
 ```bash
     printf "$COLUMN" "create-odoo-env" "[env]" "Create env file for Odoo instance."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/create-odoo-env ] && source ~/taskfile.build/bin/create-odoo-env
 ```
 
 #### create-nextcloud-env
 
 ```bash
     printf "$COLUMN" "create-nextcloud-env" "[env]" "Create env file for Nextcloud Instance."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/create-nextcloud-env ] && source ~/taskfile.build/bin/create-nextcloud-env
 ```
 
 #### list-env
 
 ```bash
     printf "$COLUMN" "list-env" "" "List env files."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/list-env ] && source ~/taskfile.build/bin/list-env
 ```
 
 #### show-env
 
 ```bash
     printf "$COLUMN" "show-env" "[env]" "Output content of the env file."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/show-env ] && source ~/taskfile.build/bin/show-env
 ```
 
 #### copy-env
 
 ```bash
     printf "$COLUMN" "copy-env" "[env][env]" "Copy env file."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/copy-env ] && source ~/taskfile.build/bin/copy-env
 ```
 
 #### edit-env
 
 ```bash
     printf "$COLUMN" "edit-env" "[env]" "Open env file in default editor."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/edit-env ] && source ~/taskfile.build/bin/edit-env
 ```
 
 #### load-env
 
 ```bash
     printf "$COLUMN" "load-env" "[env]" "Load and export env file."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/load-env ] && source ~/taskfile.build/bin/load-env
 ```
 
 #### rename-env
 
 ```bash
     printf "$COLUMN" "rename-env" "[env][env]" "Rename env file."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/rename-env ] && source ~/taskfile.build/bin/rename-env
 ```
 
 #### remove-env
 
 ```bash
     printf "$COLUMN" "remove-env" "[env]" "Remove environment config."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/remove-env ] && source ~/taskfile.build/bin/remove-env
 ```
 
 #### backup-env-files
 
 ```bash
     printf "$COLUMN" "backup-env-files" "[path]" "Archive and copy env files to target location."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/backup-env-files ] && source ~/taskfile.build/bin/backup-env-files
 ```
 
 ### restore-env-files
 
 ```bash
     printf "$COLUMN" "restore-env-files" "[path]" "Extract and copy env files from backup file."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/restore-env-files ] && source ~/taskfile.build/bin/restore-env-files
 ```
 
 ### LLM
@@ -824,20 +780,12 @@ In your task file you can import these functions from the taskfile library.
 
 ```bash
     printf "$COLUMN" "commit-with-llm" "" "Commit with llm generated commit message."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/commit-with-llm ] && source ~/taskfile.build/bin/commit-with-llm
 ```
 
 ### update-with-llm
 
 ```bash
     printf "$COLUMN" "update-with-llm" "[glob][prompt]" "Feed files matching glob to LLM and apply changes."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/update-with-llm ] && source ~/taskfile.build/bin/update-with-llm
 ```
 
 ### Git
@@ -846,10 +794,6 @@ In your task file you can import these functions from the taskfile library.
 
 ```bash
     printf "$COLUMN" "update-submodule" "" "Update git submodules."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/update-submodule ] && source ~/taskfile.build/bin/update-submodule
 ```
 
 ### Pass
@@ -858,18 +802,10 @@ In your task file you can import these functions from the taskfile library.
 
 ```bash
     printf "$COLUMN" "store-dotenv" "" "Store content of .env in pass entry."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/store-dotenv ] && source ~/taskfile.build/bin/store-dotenv
 ```
 
 #### restore-dotenv
 
 ```bash
     printf "$COLUMN" "restore-dotenv" "" "Restore content of .env from pass entry."
-
-# Import commands
-
-[ -f ~/taskfile.build/bin/restore-dotenv ] && source ~/taskfile.build/bin/restore-dotenv
 ```

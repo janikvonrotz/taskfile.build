@@ -37,7 +37,13 @@ function help() {
 
 # Import commands
 
-source ./bin/commit-with-llm
+if [ -d "$HOME/taskfile.build/bin" ]; then
+    for file in "$HOME/taskfile.build/bin/"*; do
+        if [ -f "$file" ]; then
+            source "$file"
+        fi
+    done
+fi
 
 # Project commands
 
