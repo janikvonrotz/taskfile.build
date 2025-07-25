@@ -463,12 +463,13 @@ _task_completions() {
 }
 
 complete -F _task_completions task
+complete -F _task_completions t
 ```
 
 Completion for zsh: `~/.oh-my-zsh/completions/_task`
 
 ```bash
-#compdef task
+#compdef task t
 
 _arguments '1: :->tasks' '*: :_files'
 
@@ -480,6 +481,8 @@ case "$state" in
         ;;
 esac
 ```
+
+The completion also works for task alias `alias t='./task'`.
 
 ### GitHub Actions
 
