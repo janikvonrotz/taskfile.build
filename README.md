@@ -803,14 +803,20 @@ For autocomplete add the command to the help table.
 
 ### Pass
 
-#### store-dotenv
+Set path to pass entry.
 
 ```bash
-    printf "$COLUMN" "store-dotenv" "" "Store content of .env in pass entry."
+PASS_ENTRY=$(echo "env/${PWD##*/}" | tr '[:upper:]' '[:lower:]')
 ```
 
-#### restore-dotenv
+#### save-dotenv
 
 ```bash
-    printf "$COLUMN" "restore-dotenv" "" "Restore content of .env from pass entry."
+    printf "$COLUMN" "save-dotenv" "" "Store content of .env in pass entry."
+```
+
+#### load-dotenv
+
+```bash
+    printf "$COLUMN" "load-dotenv" "" "Restore content to .env from pass entry."
 ```

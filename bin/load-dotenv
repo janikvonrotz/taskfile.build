@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function restore-dotenv() {
+function load-dotenv() {
     if pass find "$PASS_ENTRY" >/dev/null; then
         echo "Restore .env file from pass: $PASS_ENTRY"
         pass show "$PASS_ENTRY" > .env
