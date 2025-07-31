@@ -5,4 +5,9 @@ function load-env() {
     ENV_FILEPATH="$TASK_CONFIG_DIR/.env.$1"
     echo "Source env file $ENV_FILEPATH"
     source "$ENV_FILEPATH"
+
+    export ODOO_URL
+    export ODOO_DATABASE
+    export ODOO_USERNAME
+    export ODOO_PASSWORD
 }
