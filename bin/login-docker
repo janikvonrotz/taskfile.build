@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function login-docker() {
+    echo "Enter Docker login credentials for $DOCKER_REGISTRY registry."
+    read -p "Enter username: " DOCKER_USERNAME
+    read -s -p "Enter password: " DOCKER_PASSWORD
+
+    echo -e "\nRun Docker login with username $DOCKER_USERNAME."
+    echo "$DOCKER_PASSWORD" | docker --config "$DOCKER_CONFIG" login --username "$DOCKER_USERNAME" --password-stdin
+    echo "Stored credentials to $DOCKER_CONFIG."
+}

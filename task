@@ -2,7 +2,7 @@
 set -e
 
 function help-table() {
-    CMD_WIDTH=18
+    CMD_WIDTH=40
     OPT_WIDTH=6
     DESC_WIDTH=42
     COLUMN="| %-${CMD_WIDTH}s | %-${OPT_WIDTH}s | %-${DESC_WIDTH}s |\n"
@@ -91,4 +91,3 @@ else
             ;;
     esac
 fi
-

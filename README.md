@@ -702,7 +702,6 @@ For autocomplete add the command to the help table.
     printf "$COLUMN" "template-dotenv" "" "Generate .env from .env.template."
 ```
 
-
 ### Python
 
 #### init-venv
@@ -819,4 +818,19 @@ PASS_ENTRY=$(echo "env/${PWD##*/}" | tr '[:upper:]' '[:lower:]')
 
 ```bash
     printf "$COLUMN" "load-dotenv" "" "Restore content to .env from pass entry."
+```
+
+### Doc
+
+Set path to docker config.
+
+```bash
+DOCKER_REGISTRY=${DOCKER_REGISTRY:="mintsystem"}
+DOCKER_CONFIG="$HOME/.docker/$DOCKER_REGISTRY/"
+```
+
+### login-docker
+
+```bash
+    printf "$COLUMN" "login-docker" "" "Run Docker login and create docker config."
 ```
