@@ -832,5 +832,5 @@ DOCKER_CONFIG="$HOME/.docker/$DOCKER_REGISTRY/"
 ### login-docker
 
 ```bash
-    printf "$COLUMN" "login-docker" "" "Run Docker login and create docker config."
+    printf "$COLUMN" "login-docker" "[user][token]" "Run Docker login and create docker config."
 ```
